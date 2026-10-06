@@ -1,30 +1,45 @@
 ﻿using Arreglos.Logica;
 
-internal class Program
+
+public class Program
 {
     private static void Main(string[] args)
     {
         Console.WriteLine("\nArreglos");
-        MiArreglo oMiarreglo = new MiArreglo(20);
 
-        oMiarreglo.Llenar(5,20);
+        MiArreglo oMiArreglo = new MiArreglo(5);
+        try
+        {
+            for (int i = 0; i < oMiArreglo.N; i++)
+            {
+                oMiArreglo.Agregar(i * 3);
 
-        Console.WriteLine("\nArreglo desordenado");
-        Console.WriteLine(oMiarreglo);
-
-        Console.WriteLine("\nArreglo ordenado ascendente");
-        oMiarreglo.Ordenar();
-        Console.WriteLine(oMiarreglo);
-
-        Console.WriteLine("\nArreglo ordenado descendente");
-        oMiarreglo.Ordenar(false);
-        Console.WriteLine(oMiarreglo);
-        //oMiarreglo.N = 10;
+            }
 
 
 
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
 
-        //para que no aparezcan las letras
+
+        Console.WriteLine(oMiArreglo);
+        /* oMiArreglo.Llenar(5, 20);
+
+         Console.WriteLine("\nArreglo desordenado");
+         Console.WriteLine(oMiArreglo);
+
+         Console.WriteLine("\nArreglo ordenado ascendente");
+         oMiArreglo.Ordenar();
+         Console.WriteLine(oMiArreglo);
+
+         Console.WriteLine("\nArreglo ordenado descendente");
+         oMiArreglo.Ordenar(false);
+         Console.WriteLine(oMiArreglo);
+        */
         Console.ReadKey();
+
     }
 }

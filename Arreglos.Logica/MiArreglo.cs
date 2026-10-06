@@ -6,30 +6,28 @@ namespace Arreglos.Logica
 {
     public class MiArreglo
     {
-        //atributos
+        //Atributos o campos
         private int _tope;
-        private int[] _arreglo;// arreglo
+        private int[] _arreglo;
 
-        private bool ascendente;
-        //constructor
+        //Constructor
         public MiArreglo(int n)
         {
             N = n;
             _arreglo = new int[N];
             _tope = 0;
         }
-        //propiedades
+
+        //Propiedades
         public int N { get; }
         public bool EstaVacio => _tope == 0;
-
         public bool EstaLleno => _tope == N;
 
-
-        //metodos
+        //Métodos
+        //Metodo Llenar con parametros
         public void Llenar(int minimo, int maximo)
         {
             Random oRandom = new Random();
-
             for (int i = 0; i < N; i++)
             {
                 _arreglo[i] = oRandom.Next(minimo, maximo);
@@ -37,45 +35,65 @@ namespace Arreglos.Logica
             _tope = N;
         }
 
-        //METODO ORDENAR
-         public void Ordenar()
+        //Método Ordenar 
+        public void Ordenar()
         {
             Ordenar(true);
         }
 
-
-        //metodo ordenar
-                public void Ordenar(bool ascendente)
+        //Método Ordenar
+        public void Ordenar(bool ascendente)
         {
-            for(int i = 0; i < _tope;i++)
+            for (int i = 0; i < _tope - 1; i++)
+
             {
-                for (int j = i + 1; j < _tope; j++)
+                for (int j = i + 1; j < _tope - 1; j++)
                 {
                     if (ascendente)
                     {
-                    }
-                    if (_arreglo[i] > _arreglo[j])
-                    {
-                        cambiar(ref _arreglo[i], ref _arreglo[j]);
+
+
+                        if (_arreglo[i] > _arreglo[j])
+                        {
+                            Cambiar(ref _arreglo[i], ref _arreglo[j]);
+                        }
+
                     }
                     else
                     {
+
                         if (_arreglo[i] < _arreglo[j])
                         {
-                            cambiar(ref _arreglo[i], ref _arreglo[j]);
+                            Cambiar(ref _arreglo[i], ref _arreglo[j]);
                         }
                     }
-                }
-            }
 
+                }
+
+            }
         }
-        //metodo cambiar
-        public void cambiar(ref int a, ref int b)
+        //Metodo cambiar
+        public void Cambiar(ref int a, ref int b)
         {
             int aux = a;
             a = b;
             b = aux;
         }
+
+        //Método agregar
+        public void Agregar(int numero)
+        {
+            if (EstaLleno)
+            {
+                throw new Exception("El arreglo está lleno");
+            }
+            else
+            {
+                _arreglo[_tope] = numero;
+                _tope++;
+            }
+        }
+
         public override string ToString()
         {
             if (EstaVacio)
@@ -83,20 +101,23 @@ namespace Arreglos.Logica
                 return "El arreglo está vacío";
             }
 
-            string salida = string.Empty; //limpiar la variable salida
+            string salida = string.Empty;
             int contador = 0;
-
             for (int i = 0; i < _tope; i++)
             {
-                salida += $"{_arreglo[i]}\t";
+                salida += $" {_arreglo[i]}\t";
                 contador++;
                 if (contador > 9)
                 {
+                    contador = 0;
                     salida += "\n";
                 }
-            }  
+            }
+
 
             return salida;
         }
+
+
     }
 }
