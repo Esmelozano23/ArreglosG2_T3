@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -49,7 +50,7 @@ namespace Arreglos.Logica
             for (int i = 0; i < _tope - 1; i++)
 
             {
-                for (int j = i + 1; j < _tope - 1; j++)
+                for (int j = i + 1; j < _tope; j++)
                 {
                     if (ascendente)
                     {
@@ -150,7 +151,7 @@ namespace Arreglos.Logica
             int contandoPares = 0;
             for (int i = 0; i < _tope; i++)
             {
-                if (_arreglo[i] % 2 == 0)
+                if (Espar(_arreglo[i]))
                 {
                     contandoPares++;
                 }
@@ -158,7 +159,7 @@ namespace Arreglos.Logica
             var oMiArreglo = new MiArreglo(contandoPares);
             for (int i = 0; i < _tope; i++)
             {
-                if (_arreglo[i] % 2 == 0)
+                if (Espar(_arreglo[i]))
                 {
                     oMiArreglo.Agregar(_arreglo[i]);
                 }
@@ -167,9 +168,61 @@ namespace Arreglos.Logica
             return oMiArreglo;
         }
 
-       
+
+        private bool Espar(int n)
+        {
+
+            if (n % 2 == 0)
+            {
+                return true;
+            }
+            return false; ;
+        }
+
+        //Metodo obter primos
+
+        public MiArreglo ObtenerPrimos()
+        {
+            int contandoPrimos = 0;
+            for (int i = 0; i < _tope; i++)
+            {
+                if (_arreglo[i] == 1) { continue; }
+                if (EsPrimo(_arreglo[i]))
+                {
+                    contandoPrimos++;
+                }
+            }
+            var arregloPrimos = new MiArreglo(contandoPrimos);
+            for (int i = 0; i < _tope; i++)
+            {
+                if (_arreglo[i] == 1) { continue; }
+                if (EsPrimo(_arreglo[i]))
+                {
+                    arregloPrimos.Agregar(_arreglo[i]);
+                }
+            }
+            return arregloPrimos;
+        }
 
 
+
+        private bool EsPrimo(int n)
+        {
+
+            if (n < 2)
+            {
+                return false;
+            }
+
+            for (int i = 2; i < n; i++)
+            {
+                if (n % i == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
 
         public override string ToString()

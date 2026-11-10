@@ -1,4 +1,5 @@
-﻿using Arreglos.Logica;
+﻿
+using Arreglos.Logica;
 
 
 public class Program
@@ -24,6 +25,8 @@ public class Program
             Console.WriteLine("\nPares ordenados\n");
             verPares.Ordenar();
             Console.WriteLine(verPares);
+
+
 
             /*
             oMiArreglo.Agregar(10);
